@@ -12,6 +12,6 @@ data class RestaurantItem(
     @ColumnInfo(name = "res_name")
     val resName: String,
 
-    @ColumnInfo(name = "isLiked")
+    @ColumnInfo(name = "isLiked", defaultValue = false.toString())
     val isLiked:Boolean
 )

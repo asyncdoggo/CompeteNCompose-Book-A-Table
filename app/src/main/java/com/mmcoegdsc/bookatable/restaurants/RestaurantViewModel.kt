@@ -1,8 +1,17 @@
 package com.mmcoegdsc.bookatable.restaurants
 
+import android.content.Context
 import android.view.Menu
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.mmcoegdsc.bookatable.data.MenuItem
+import com.mmcoegdsc.bookatable.data.RestaurantDatabase
+import com.mmcoegdsc.bookatable.data.RestaurantItem
+import com.mmcoegdsc.bookatable.data.RestaurantRepository
 
 class RestaurantViewModel:ViewModel(){
 //    val menu = mutableListOf<MenuItem>()
@@ -10,28 +19,15 @@ class RestaurantViewModel:ViewModel(){
 
 
 
-    var menu = listOf<MenuItem>(
-        MenuItem("Res",200f),
-        MenuItem("Res",200f),
-        MenuItem("Res",200f),
-        MenuItem("Res",200f),
-        MenuItem("Res",200f),
-        MenuItem("Res",200f),
-        MenuItem("Res",200f),
-        MenuItem("Res",200f),
-        MenuItem("Res",200f),
-    )
+    var menu = listOf<MenuItem>()
 
-    var restaurants = listOf(
-        "String1",
-        "String1",
-        "String1",
-        "String1",
-        "String1",
-        "String1",
-        "String1",
-        "String1",
-        "String1",
-        "String1",
-    )
+    var restaurants = mutableListOf<RestaurantItem>()
+
+
+    fun getres(context :Context): LiveData<List<RestaurantItem>> {
+        val resDao = RestaurantDatabase.getInstance(context).eventDao()
+        val repository = RestaurantRepository(resDao)
+        return repository.getAllData
+    }
+
 }

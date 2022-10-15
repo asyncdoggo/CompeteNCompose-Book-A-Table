@@ -1,6 +1,5 @@
 package com.mmcoegdsc.bookatable
 
-import com.mmcoegdsc.bookatable.Routes
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -20,7 +19,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavType
 import androidx.navigation.compose.*
 import androidx.navigation.navArgument
-import com.mmcoegdsc.bookatable.ui.theme.booking.BookingTabScreen
+import com.mmcoegdsc.bookatable.booking.BookingTabScreen
 import com.mmcoegdsc.bookatable.login.LoginScreen
 import com.mmcoegdsc.bookatable.profile.UserProfileScreen
 import com.mmcoegdsc.bookatable.restaurants.RestaurantScreen

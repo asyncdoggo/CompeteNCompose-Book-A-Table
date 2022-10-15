@@ -5,7 +5,7 @@ class RestaurantRepository(private val RestaurantDao:RestaurantDao) {
 
         val getAllData: LiveData<List<RestaurantItem>> = RestaurantDao.getAll()
 
-        suspend fun addEvent(eventItem: RestaurantItem){
-            RestaurantDao.insert(eventItem)
+        suspend fun addRestaurant(resItem: RestaurantItem){
+            RestaurantDao.insert(resItem)
         }
 }

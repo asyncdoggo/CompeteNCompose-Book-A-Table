@@ -10,10 +10,12 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarOutline
-import androidx.compose.material.icons.filled.Start
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,13 +23,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
+import com.mmcoegdsc.bookatable.R
+
 
 @Composable
 fun RestaurantsListScreen(
     navController: NavController?,
     viewModel: RestaurantViewModel = viewModel()
 ) {
-    val restaurants = viewModel.restaurants
+    val restaurants = viewModel.getres(LocalContext.current).observeAsState()
 
 
     Box(modifier = Modifier.fillMaxSize()){
@@ -50,8 +55,8 @@ fun RestaurantsListScreen(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally
             ){
-                items(restaurants){item ->
-                    RestaurantItem(item = item, isLiked = listOf(true,false).random()){
+                items(restaurants.value!!){item ->
+                    RestaurantItem(item = item.resName, isLiked = item.isLiked){
 
                     }
                 }
@@ -74,6 +79,16 @@ fun RestaurantItem(item:String,isLiked: Boolean,onClick:(String)->Unit) {
             }
             .padding(20.dp)
     ) {
+
+        AsyncImage(
+            model = "https://upload.wikimedia.org/wikipedia/commons/9/91/Tom%27s_Restaurant%2C_Manhattan.jpg",
+            placeholder = painterResource(id = R.drawable.ic_launcher_background),
+            contentDescription = "Restaurant Image",
+            modifier = Modifier
+                .size(10.dp)
+                .padding(start = 20.dp, end = 20.dp)
+        )
+
         Text(
             text = item,
             fontSize = 18.sp,

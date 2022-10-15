@@ -7,19 +7,19 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(entities = [RestaurantItem::class], version = 1, exportSchema = false)
-abstract class EventDatabase: RoomDatabase() {
+abstract class RestaurantDatabase: RoomDatabase() {
     abstract fun eventDao(): RestaurantDao
 
     companion object{
-        private var INSTANCE: EventDatabase? = null
+        private var INSTANCE: RestaurantDatabase? = null
 
-        fun getInstance(context: Context): EventDatabase{
+        fun getInstance(context: Context): RestaurantDatabase{
             synchronized(this) {
                 var instance = INSTANCE
                 if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
-                        EventDatabase::class.java,
+                        RestaurantDatabase::class.java,
                         "todo_list_database"
                     ).fallbackToDestructiveMigration()
                         .build()
