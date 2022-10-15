@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "918323431920",
+    "project_id": "tablebooking-89eef",
+    "storage_bucket": "tablebooking-89eef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:918323431920:android:954c6926cd27e0db1a7535",
+        "android_client_info": {
+          "package_name": "com.mmcoegdsc.bookatable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "918323431920-sg5m0qumfd439nl7bphpdkufmevlmvgo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAV1sbaYjxOcM46_lq-7SIiTWszMw2K-Oc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "918323431920-sg5m0qumfd439nl7bphpdkufmevlmvgo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
