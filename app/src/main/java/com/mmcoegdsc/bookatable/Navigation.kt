@@ -17,11 +17,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavType
 import androidx.navigation.compose.*
+import androidx.navigation.navArgument
 import com.mmcoegdsc.bookatable.ui.theme.booking.BookingTabScreen
 import com.mmcoegdsc.bookatable.login.LoginScreen
-import com.mmcoegdsc.bookatable.ui.theme.profile.ProfileScreen
+import com.mmcoegdsc.bookatable.profile.UserProfileScreen
 import com.mmcoegdsc.bookatable.restaurants.RestaurantScreen
+import com.mmcoegdsc.bookatable.restaurants.RestaurantsListScreen
 import com.mmcoegdsc.bookatable.signup.RegisterScreen
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -54,7 +57,7 @@ fun BottomNav() {
 
     val items = listOf(
         Routes.ProfileScreen,
-        Routes.RestaurantScreen,
+        Routes.RestaurantListScreen,
         Routes.BookingScreen
     )
 
@@ -118,16 +121,24 @@ fun BottomNav() {
         NavHost(
             navController = bottomNavController,
             modifier = Modifier.padding(it),
-            startDestination = Routes.RestaurantScreen.route
+            startDestination = Routes.RestaurantListScreen.route
         ){
             composable(route = Routes.ProfileScreen.route){
-                ProfileScreen(bottomNavController)
+                UserProfileScreen(navController = bottomNavController)
             }
-            composable(route = Routes.RestaurantScreen.route){
-                RestaurantScreen(bottomNavController)
+            composable(
+                route = Routes.RestaurantScreen.route + "/{resName}",
+                arguments = listOf(
+                    navArgument("resName"){ type = NavType.StringType }
+                )
+            ){ navBackStackEntry ->
+                RestaurantScreen(bottomNavController,name = navBackStackEntry.arguments?.getString("resName")?:"")
             }
             composable(route = Routes.BookingScreen.route){
                 BookingTabScreen(bottomNavController)
+            }
+            composable(route = Routes.RestaurantListScreen.route){
+                RestaurantsListScreen(navController = bottomNavController)
             }
         }
     }

@@ -14,8 +14,9 @@ sealed class Routes(
     object LoginScreen : Routes(null,null,"login")
     object SignupScreen : Routes(null,null,"register")
     object Home : Routes(null,null,"home")
+    object RestaurantScreen : Routes(null,null,"restaurant")
 
     object ProfileScreen : Routes("profile",Icons.Default.Person,"profile")
-    object RestaurantScreen : Routes("restaurants",Icons.Default.Restaurant,"restaurant")
+    object RestaurantListScreen : Routes("restaurants",Icons.Default.Restaurant,"restaurantlist")
     object BookingScreen : Routes("booking",Icons.Default.BookOnline,"booking")
 }
